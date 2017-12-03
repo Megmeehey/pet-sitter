@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 public class SIBeansTest {
     @Test
     public void testConfig() {
-        // ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/set/sample-config-01.xml");
+        // ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/set/beans.xml");
         ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/set/sample-config-02.xml");
 
         log.info(" --- All beans in context --- ");

@@ -15,7 +15,7 @@ import static org.junit.Assert.assertNotNull;
 public class CollectionBeansTest {
     @Test
     public void testConfig() {
-        //ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/others/sample-config-01.xml");
+        //ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/others/beans.xml");
         ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/others/sample-config-02.xml");
 
         CollectionHolder ctBean = (CollectionHolder) ctx.getBean("collectionHolder");
