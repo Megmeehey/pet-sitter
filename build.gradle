@@ -1,5 +1,6 @@
 plugins {
     id 'com.gradle.build-scan' version '1.9'
+    id 'net.ltgt.apt' version '0.10'
 }
 
 buildScan {
@@ -50,6 +51,9 @@ allprojects {
         //aop libs
         aspectjVersion = '1.8.0'
 
+        //lombok
+        lombokVersion = '1.16.18'
+
         //we group libraries by their purpose so we can import them easier in the modules
         boot = [
                 springBootPlugin: "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion",
@@ -83,6 +87,7 @@ allprojects {
         ]
 
         misc = [
+                lombok            : "org.projectlombok:lombok:$lombokVersion",
                 h2                : "com.h2database:h2:$h2Version",
                 joda              : "joda-time:joda-time:$jodaVersion",
                 jstl              : "javax.servlet:jstl:1.2",
