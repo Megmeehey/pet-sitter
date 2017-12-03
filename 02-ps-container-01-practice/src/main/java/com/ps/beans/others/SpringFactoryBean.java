@@ -2,15 +2,15 @@ package com.ps.beans.others;
 
 import com.ps.beans.SimpleBean;
 import com.ps.beans.SimpleBeanImpl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.FactoryBean;
 
 /**
  * Created by iuliana.cosmina on 3/26/16.
  */
+
+@Slf4j
 public class SpringFactoryBean implements FactoryBean<SimpleBean> {
-    private Logger logger = LoggerFactory.getLogger(SpringFactoryBean.class);
 
     private SimpleBean simpleBean = new SimpleBeanImpl();
 
@@ -19,7 +19,7 @@ public class SpringFactoryBean implements FactoryBean<SimpleBean> {
      * created without being declared anywhere.
      */
     public SpringFactoryBean() {
-        logger.info(">> Look ma, no definition!");
+        log.info(">> Look ma, no definition!");
     }
 
     @Override

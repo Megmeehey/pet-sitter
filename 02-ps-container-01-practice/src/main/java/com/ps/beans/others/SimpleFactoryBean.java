@@ -2,17 +2,15 @@ package com.ps.beans.others;
 
 import com.ps.beans.SimpleBean;
 import com.ps.beans.SimpleBeanImpl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by iuliana.cosmina on 3/26/16.
  */
+@Slf4j
 public class SimpleFactoryBean {
-    private static Logger logger = LoggerFactory.getLogger(SimpleFactoryBean.class);
-
     public SimpleBean getSimpleBean() {
-        logger.info(">> Instantiating a SimpleBeanImpl.");
+        log.info(">> Instantiating a SimpleBeanImpl.");
         return new SimpleBeanImpl();
     }
 }
