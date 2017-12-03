@@ -11,10 +11,12 @@ import com.ps.repos.ResponseRepo;
 import com.ps.repos.ReviewRepo;
 import com.ps.repos.UserRepo;
 import com.ps.services.OperationsService;
+import lombok.Setter;
 
 /**
  * Created by iuliana.cosmina on 3/7/16.
  */
+@Setter
 public class SimpleOperationsService implements OperationsService {
 
     private RequestRepo requestRepo;
@@ -24,12 +26,17 @@ public class SimpleOperationsService implements OperationsService {
 
     @Override
     public Response createResponse(Long sitterId, Long requestId) {
-        // get sitter
-        // TODO 1. retrieve sitter * request  (according to diagram 2.5)
-
-        //create a response
+        User sitter = userRepo.findById(sitterId);
+        Request request = requestRepo.findById(requestId);
         Response response = new Response();
-        //TODO 2. populate & save the response object
+        if (sitter != null) {
+            response.setUser(sitter);
+        }
+        if (request != null) {
+            response.setRequest(request);
+        }
+        response.setResponseStatus(ResponseStatus.PROPOSED);
+        response.setDetails("");
         return response;
     }
 
@@ -82,22 +89,5 @@ public class SimpleOperationsService implements OperationsService {
         owner.setRating(newRating);
         userRepo.save(owner);
         return owner;
-    }
-
-    //                setters & getters
-    public void setRequestRepo(RequestRepo requestRepo) {
-        this.requestRepo = requestRepo;
-    }
-
-    public void setUserRepo(UserRepo userRepo) {
-        this.userRepo = userRepo;
-    }
-
-    public void setResponseRepo(ResponseRepo responseRepo) {
-        this.responseRepo = responseRepo;
-    }
-
-    public void setReviewRepo(ReviewRepo reviewRepo) {
-        this.reviewRepo = reviewRepo;
     }
 }

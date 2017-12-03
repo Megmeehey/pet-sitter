@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * Created by iuliana.cosmina on 3/4/16.
  */
-public interface PetRepo extends  AbstractRepo<Pet> {
+public interface PetRepo extends AbstractRepo<Pet> {
 
     Pet findByOwner(User owner, String name);
 

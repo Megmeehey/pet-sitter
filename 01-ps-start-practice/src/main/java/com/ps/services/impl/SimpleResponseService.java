@@ -10,7 +10,7 @@ import com.ps.services.ResponseService;
 public class SimpleResponseService extends SimpleAbstractService<Response> implements ResponseService {
 
     private ResponseRepo repo;
-    
+
     //                setters & getters
     public void setRepo(ResponseRepo responseRepo) {
         this.repo = responseRepo;

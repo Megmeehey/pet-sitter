@@ -7,13 +7,13 @@ import com.ps.services.AbstractService;
 /**
  * Created by iuliana.cosmina on 3/8/16.
  */
-public abstract class SimpleAbstractService<T extends AbstractEntity>  implements AbstractService<T>{
+public abstract class SimpleAbstractService<T extends AbstractEntity> implements AbstractService<T> {
 
     public void save(T entity) {
         getRepo().save(entity);
     }
 
-    public T findById(Long entityId){
+    public T findById(Long entityId) {
         return getRepo().findById(entityId);
     }
 

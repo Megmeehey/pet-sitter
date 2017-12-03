@@ -9,7 +9,7 @@ import com.ps.util.RecordBuilder;
 /**
  * Created by iuliana.cosmina on 2/23/16.
  */
-public class SimpleUserService extends SimpleAbstractService<User>  implements UserService {
+public class SimpleUserService extends SimpleAbstractService<User> implements UserService {
 
     private UserRepo repo;
 
