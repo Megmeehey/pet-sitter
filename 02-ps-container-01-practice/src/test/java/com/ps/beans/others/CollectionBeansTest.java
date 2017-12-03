@@ -1,8 +1,7 @@
 package com.ps.beans.others;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -11,10 +10,9 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by iuliana.cosmina on 3/26/16.
  */
+
+@Slf4j
 public class CollectionBeansTest {
-
-    private Logger logger = LoggerFactory.getLogger(MtBeanTest.class);
-
     @Test
     public void testConfig() {
         //ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/others/sample-config-01.xml");
@@ -22,7 +20,7 @@ public class CollectionBeansTest {
 
         CollectionHolder ctBean = (CollectionHolder) ctx.getBean("collectionHolder");
         assertNotNull(ctBean);
-        logger.info(ctBean.toString());
+        log.info(ctBean.toString());
 
     }
 }

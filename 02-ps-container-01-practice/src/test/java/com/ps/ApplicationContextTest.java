@@ -2,6 +2,7 @@ package com.ps;
 
 import com.ps.sample.ComplexBean;
 import com.ps.sample.SimpleBean;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,19 +18,17 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by iuliana.cosmina on 3/23/16.
  */
+@Slf4j
 public class ApplicationContextTest {
-
-    private Logger logger = LoggerFactory.getLogger(ApplicationContextTest.class);
-
     private ConfigurableApplicationContext ctx;
 
     @Test
     public void testDataSource1() {
         ctx = new ClassPathXmlApplicationContext("classpath:spring/application-config.xml");
-        logger.info(" >> init done.");
+        log.info(" >> init done.");
         DataSource dataSource1 = ctx.getBean("dataSource1", DataSource.class);
         assertNotNull(dataSource1);
-        logger.info(" >> usage done.");
+        log.info(" >> usage done.");
         ctx.close();
     }
 
