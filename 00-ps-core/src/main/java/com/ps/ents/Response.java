@@ -2,6 +2,10 @@ package com.ps.ents;
 
 import com.ps.base.AbstractEntity;
 import com.ps.base.ResponseStatus;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -13,6 +17,9 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name="P_RESPONSE")
+@Getter @Setter
+@NoArgsConstructor
+@EqualsAndHashCode(exclude = {"details", "responseStatus"}, callSuper = true)
 public class Response extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)
@@ -31,69 +38,9 @@ public class Response extends AbstractEntity {
     @NotEmpty
     private String details;
 
-    //required by JPA
-    public Response() {
-        super();
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Request getRequest() {
-        return request;
-    }
-
-    public void setRequest(Request request) {
-        this.request = request;
-    }
-
-    public ResponseStatus getResponseStatus() {
-        return responseStatus;
-    }
-
-    public void setResponseStatus(ResponseStatus responseStatus) {
-        this.responseStatus = responseStatus;
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        Response response = (Response) o;
-
-        if (user != null ? !user.getId().equals(response.user.getId()) : response.user != null) return false;
-        if (request != null ? !request.getId().equals(response.request.getId()) : response.request != null) return false;
-        return responseStatus == response.responseStatus;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (user != null ? user.hashCode() : 0);
-        result = 31 * result + (request != null ? request.hashCode() : 0);
-        result = 31 * result + (responseStatus != null ? responseStatus.hashCode() : 0);
-        return result;
-    }
-
     @Override
     public String toString() {
-        return String.format("Request[id='%,.2f', user='%s', request='%s', responseStatus='%s']",
+        return String.format("Request[id='%04d', user='%s', request='%s', responseStatus='%s']",
                 id, user == null ? "" : user.getId(), request == null ? "" : request.getId(), responseStatus);
     }
 }
