@@ -20,7 +20,6 @@ import static org.junit.Assert.assertTrue;
 public class CIBeansTest {
     @Test
     public void testConfig() {
-        List<ComplexBean> complexBeanList = new ArrayList<>();
         // ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/ctr/sample-config-01.xml");
         ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/ctr/sample-config-02.xml");
 
@@ -30,27 +29,16 @@ public class CIBeansTest {
             Class<?>[] interfaces = bean.getClass().getInterfaces();
             for (Class intrfc : interfaces) {
                 if (intrfc == ComplexBean.class) {
-                    complexBeanList.add((ComplexBean) bean);
+                    if (bean instanceof ComplexBeanImpl) {
+                        ComplexBeanImpl cbi = (ComplexBeanImpl) bean;
+                        assertTrue(cbi.getSimpleBean() != null);
+                    } else {
+                        ComplexBean2Impl cbi = (ComplexBean2Impl) bean;
+                        assertTrue(cbi.getSimpleBean1() != null && cbi.getSimpleBean2() != null);
+                    }
                 }
             }
             log.info("Bean " + beanName + " of type ");
-        }
-
-        complexBeanList = complexBeanList.stream()
-                .filter(this::isValidComplexBean)
-                .collect(Collectors.toList());
-
-        assertTrue(complexBeanList.size() == 0);
-        //TODO 3. Retrieve beans of types ComplexBean and make sure their dependencies were correctly set.
-    }
-
-    private boolean isValidComplexBean(ComplexBean bean) {
-        if (bean instanceof ComplexBeanImpl) {
-            ComplexBeanImpl cbi = (ComplexBeanImpl) bean;
-            return cbi.getSimpleBean() != null;
-        } else {
-            ComplexBean2Impl cbi = (ComplexBean2Impl) bean;
-            return cbi.getSimpleBean1() != null && cbi.getSimpleBean2() != null;
         }
     }
 }
