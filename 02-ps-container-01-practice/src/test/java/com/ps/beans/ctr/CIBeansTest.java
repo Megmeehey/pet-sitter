@@ -6,11 +6,6 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import javax.validation.constraints.AssertTrue;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -38,7 +33,7 @@ public class CIBeansTest {
                     }
                 }
             }
-            log.info("Bean " + beanName + " of type ");
+            log.info("Bean " + beanName + " of type " + bean.getClass().getSimpleName());
         }
     }
 }
