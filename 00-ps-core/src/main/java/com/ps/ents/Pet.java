@@ -2,6 +2,10 @@ package com.ps.ents;
 
 import com.ps.base.AbstractEntity;
 import com.ps.base.PetType;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -13,6 +17,8 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "P_PET")
+@Getter @Setter
+@EqualsAndHashCode(exclude = {"details"}, callSuper = true)
 public class Pet extends AbstractEntity {
 
     @ManyToOne
@@ -33,7 +39,6 @@ public class Pet extends AbstractEntity {
     @NotNull
     private Integer age;
 
-
     @Size(max = 500)
     @Column
     private String details;
@@ -53,84 +58,9 @@ public class Pet extends AbstractEntity {
         this.age = 0;
     }
 
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
-    public PetType getPetType() {
-        return petType;
-    }
-
-    public void setPetType(PetType petType) {
-        this.petType = petType;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getRfid() {
-        return rfid;
-    }
-
-    public void setRfid(String rfid) {
-        this.rfid = rfid;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        Pet pet = (Pet) o;
-
-        if (owner != null ? !owner.getId().equals(pet.owner.getId()) : pet.owner != null) return false;
-        if (petType != pet.petType) return false;
-        if (name != null ? !name.equals(pet.name) : pet.name != null) return false;
-        if (age != null ? !age.equals(pet.age) : pet.age != null) return false;
-        return rfid != null ? rfid.equals(pet.rfid) : pet.rfid == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (owner != null ? owner.hashCode() : 0);
-        result = 31 * result + (petType != null ? petType.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (age != null ? age.hashCode() : 0);
-        result = 31 * result + (rfid != null ? rfid.hashCode() : 0);
-        return result;
-    }
-
     @Override
     public String toString() {
-        return String.format("Pet[id='%,.2f', owner='%s', pet type='%s', pet name='%s', age='%,.2f']", id, owner == null ? ""
+        return String.format("Pet[id='%04d', owner='%s', pet type='%s', pet name='%s', age='%04d']", id, owner == null ? ""
                 : owner.getId(), petType.toString(), name, age);
     }
 }
