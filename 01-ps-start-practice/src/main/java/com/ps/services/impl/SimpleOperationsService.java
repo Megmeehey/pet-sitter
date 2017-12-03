@@ -32,6 +32,7 @@ public class SimpleOperationsService implements OperationsService {
         if (sitter != null) {
             response.setUser(sitter);
         }
+        // It would be nice to throw smth, if we got sitter or request == null
         if (request != null) {
             response.setRequest(request);
         }
