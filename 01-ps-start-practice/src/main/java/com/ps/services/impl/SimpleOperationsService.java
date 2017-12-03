@@ -38,6 +38,11 @@ public class SimpleOperationsService implements OperationsService {
         }
         response.setResponseStatus(ResponseStatus.PROPOSED);
         response.setDetails("");
+        if (request != null) {
+            request.addResponse(response);
+        }
+        // Same as above.
+        responseRepo.save(response);
         return response;
     }
 
