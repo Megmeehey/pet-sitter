@@ -17,8 +17,7 @@ public class ComplexBean2Impl implements ComplexBean {
     @Getter
     private boolean complex;
 
-    public ComplexBean2Impl(SimpleBean simpleBean)
-    {
+    public ComplexBean2Impl(SimpleBean simpleBean) {
         log.info("[ComplexBean2Impl instantiation]");
         this.simpleBean = simpleBean;
     }

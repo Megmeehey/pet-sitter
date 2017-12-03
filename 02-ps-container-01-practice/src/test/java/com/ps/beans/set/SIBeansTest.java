@@ -1,8 +1,6 @@
 package com.ps.beans.set;
 
 import com.ps.beans.ComplexBean;
-import com.ps.beans.ctr.ComplexBean2Impl;
-import com.ps.beans.ctr.ComplexBeanImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -26,18 +24,16 @@ public class SIBeansTest {
             Class<?>[] interfaces = bean.getClass().getInterfaces();
             for (Class intrfc : interfaces) {
                 if (intrfc == ComplexBean.class) {
-                    if (bean instanceof com.ps.beans.ctr.ComplexBeanImpl) {
-                        com.ps.beans.ctr.ComplexBeanImpl cbi = (ComplexBeanImpl) bean;
+                    if (bean instanceof ComplexBeanImpl) {
+                        ComplexBeanImpl cbi = (ComplexBeanImpl) bean;
                         assertTrue(cbi.getSimpleBean() != null);
                     } else {
-                        com.ps.beans.ctr.ComplexBean2Impl cbi = (ComplexBean2Impl) bean;
-                        assertTrue(cbi.getSimpleBean1() != null && cbi.getSimpleBean2() != null);
+                        ComplexBean2Impl cbi = (ComplexBean2Impl) bean;
+                        assertTrue(cbi.getSimpleBean() != null);
                     }
                 }
             }
             log.info("Bean " + beanName + " of type " + ctx.getBean(beanName).getClass().getSimpleName());
         }
-
-        //TODO 4. Retrieve beans of types ComplexBean and make sure their dependencies were correctly set.
     }
 }
