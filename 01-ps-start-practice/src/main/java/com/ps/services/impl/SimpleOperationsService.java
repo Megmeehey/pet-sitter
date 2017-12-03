@@ -46,7 +46,6 @@ public class SimpleOperationsService implements OperationsService {
         return response;
     }
 
-
     @Override
     public void acceptResponse(Long requestId, Long responseId) {
         Request request = requestRepo.findById(requestId);

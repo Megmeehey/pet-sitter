@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public abstract class StubAbstractRepo<T extends AbstractEntity> implements AbstractRepo<T> {
 
-    protected Map<Long, T> records = new HashMap<>();
+    private Map<Long, T> records = new HashMap<>();
 
     @Override
     public void save(T entity) {

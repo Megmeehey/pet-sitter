@@ -8,16 +8,16 @@ import com.ps.services.impl.*;
 /**
  * Created by iuliana.cosmina on 3/4/16.
  */
-public class SimpleServiceTestBase {
+class SimpleServiceTestBase {
 
-    protected SimpleRequestService requestService;
-    protected SimpleResponseService responseService;
-    protected SimpleUserService userService;
-    protected SimplePetService petService;
-    protected SimpleReviewService reviewService;
-    protected OperationsService operationsService;
+    SimpleRequestService requestService;
+    SimpleResponseService responseService;
+    SimpleUserService userService;
+    SimplePetService petService;
+    SimpleReviewService reviewService;
+    OperationsService operationsService;
 
-    protected void init(){
+    void init(){
         UserRepo userRepo = new StubUserRepo();
         RequestRepo requestRepo = new StubRequestRepo();
         ResponseRepo responseRepo = new StubResponseRepo();
